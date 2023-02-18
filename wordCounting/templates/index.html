@@ -1,0 +1,15 @@
+<br>
+<center>
+<h1>Enter your text below to calculate the total words</h1>
+
+
+<form method="POST" action="counter">
+     {% csrf_token %}
+    <textarea name="text" cols="100" rows="30"></textarea>
+    <br><br>
+    
+        <input type="submit"/>
+  
+    
+</form>
+</center>
