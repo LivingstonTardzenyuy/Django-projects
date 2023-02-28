@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>To do app </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <br><br>
+        <center>
+            <form id="post" method="POST" action=''>
+                {% csrf_token %}
+       <p>Name</p><input type="text" name="name" id="name"/>
+       {% comment %} <p>Text</p><textarea name="text" id="text"> {% endcomment %}
+        <p>Bio</p><input type="text" name="bio" id="bio"/>  <br>
+       <input type="submit"/>
+            </form>
+        </center>
+       
+       
+    </body>
+
+<script>
+$(document).ready(function(){
+    setInterval(function(){
+        $.ajax({
+            type:'GET',
+            url : "{% url 'getProfiles' %}",
+            success: function(response){
+               // console.log(response);
+                $("#name").empty();          //make the form empty before we do anything
+                for (var key in response.content)
+                {
+                    var temp="<li>"+ response.content[key].name +"</li>"       //we want to ge tthe Names
+                    //var temp="<li>"+ response.content[key].bio +"</li>"
+                    $("#name").append(temp);
+                }
+            },
+            error: function(response){
+                alert("Error occured")
+            }
+        });
+    }, 1000);
+    
+});
+</script>
+</html>
