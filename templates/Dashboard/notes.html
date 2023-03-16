@@ -1,0 +1,57 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<body class="img js-fullheight" style="background-image: url({% static 'images1/bg.jpg' %});">
+
+    <a href="{% url 'home' %}">
+        <input style="margin-left:20px;" class="btn btn-danger" type="submit" value="Back">
+        <i class="bi bi-arrow-left"></i> 
+    </button>
+</a>
+{% comment %} <center> {% endcomment %}
+    {% comment %} <h2>Create Notes</h2> {% endcomment %}
+{% comment %} </center> {% endcomment %}
+<i class="bi bi arrow-left"></i>
+<div class="container">
+    <div class="row">
+        {% for message in messages %}
+        <h2>{{message}}</h2>
+        {% endfor %}
+        {% for note in notes reversed %}
+        <div class="col-md-4">
+            <a href="{% url 'note_detail' note.id %}">
+                <div class="card">
+                    <div class="card-header">{{note.title}}</div>
+                    <div class="card-body">{{note.description|slice:"0:100"}}</div>
+                    <div class="card-footer mt-auto "><a href="{% url 'delete_note' note.id %}">
+                        <i class="fa fa-trash fa-2x"></i></a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <br><br>
+        {% endfor %}
+        <br><br>
+
+    </div>
+</div>
+<br><br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Create Notes</legend>
+        </fieldset>
+        {{form|crispy}}
+        <div class="form-group">
+            <button href="" class="btn btn-danger" type="submit">
+                Create
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
