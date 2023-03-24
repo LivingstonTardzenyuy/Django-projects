@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container text-center mt-5" style="width: 90%; font-size:20px;">
+    <div class="center color-blue">
+        Validation using forms.py
+    </div>
+    {% for message in messages %}
+        {% if message.tags == 'sucess' %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">{{message}}
+                <a href="{ % url 'home' %}" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+            </div>
+
+        {% endif %}
+    {% endfor %}
+
+    
+    <form method="POST" class="card p-3 mt-5 mb-5" autocomplete="off n" novalidate>
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                {{form.firstname|as_crispy_field}}
+            </div>
+
+            <div class="col-6">
+                {{form.lastname|as_crispy_field}}
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                {{form.email|as_crispy_field}}
+            </div>
+            <div class="col-6">
+                {{form.age|as_crispy_field}}
+            </div>
+        </div>
+
+        <div>
+            {{form.message|as_crispy_field}}
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-primary mt-3" style="width:120px;">Submit</button>
+{% endblock %}
