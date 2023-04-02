@@ -1,0 +1,74 @@
+{% extends 'partial/base.html' %}
+{% block title%}Post detail page {% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+  <div class="container">
+    
+      <div class="row mt-5 pt-4">
+        <div class="col-md-8">
+          <div class="card my-5 shadow">
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                      <img src="{{p_details.author.profile.image.url}}" alt="img" width="200" height="200">
+                    </div>
+                    
+                    <div class="col-md-8">
+                      <span>
+                        <small>Author: <b style="color:green">{{p_details.author.username}}</b> </small>
+                            <br>
+                      <small>Date created: <b style="color:green">{{p_details.date_created}}</b></small>
+                    </span>
+                    <br><br>
+                      <hr>
+                      
+                        <a class="h3">{{p_details.title}}</a>
+                      
+                      <p class="text-justify my-3">
+                        {{p_details.content}}
+                        </p>
+                    </div>
+                  </div>
+                  <p class="mt-5">
+                    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Comments: {{p_details.comment_count}}
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample">
+                    <div style="height:250px; overflow-y:scroll" class="card card-body">
+                      
+                      {% comment %} iterating to obtain all the comments in the db {% endcomment %}
+                      {% for comment in p_details.comments reversed %}    
+                      
+                      <p class="text-justify">{{p_details.author.username}}: {{comment.content}}</p>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  
+                  <form action="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    {{instance}}
+                    <input class="btn btn-primary btn-sm" type="submit" value="Save comment" /> 
+                  </form>
+              
+                </div>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+      {% if user.username == p_details.author.username %}
+        <div class="my-3">
+            <span><a class= "btn btn-primary float-middle btn-sm " href="{% url 'edit_post' p_details.id %}">Edit</a></span>
+            <span><a class= "btn btn-danger float-middle btn-sm " href="{% url 'delete_post' p_details.id %}">Delete</a></span>
+        </div>
+      {% endif %}
+    </div>
+
+
+{% endblock %}
+

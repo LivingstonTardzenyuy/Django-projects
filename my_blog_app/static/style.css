@@ -1,0 +1,7 @@
+.cover{
+    background: rgb(89, 7, 211);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}

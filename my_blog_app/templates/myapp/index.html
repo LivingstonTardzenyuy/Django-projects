@@ -1,0 +1,56 @@
+{% extends 'partial/base.html' %}
+{% block title%}Home page {% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+  <div class="container">
+    
+      <div class="row mt-5 pt-4">
+        <div class="col-md-4">
+          <div class="card my-3 shadow">
+              <div class="card-body">
+                <form method="POST">
+                  {% csrf_token %}
+                  {{ form|crispy}}
+                  <input class="btn btn-primary btn-block" type="submit" value="POST" />
+                </form>
+              </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          {% for postModel_object in postModel_object reversed %}
+            <div class="card shadow my-3">
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="{{postModel_object.author.profile.image.url}}" alt="img" width="200" height="200">
+                  </div>
+                  
+                  <div class="col-md-8">
+                    <span>
+                      <small>Author: <b>{{postModel_object.author.username}}</b> </small>
+                   ||
+                    <small>{{postModel_object.date_created}}</small>
+                  </span>
+                    <hr>
+                    
+                      <a class="h3" href="{% url 'postDetails' postModel_object.id %}">{{postModel_object.title}}</a>
+                    
+                    <p class="text-justify my-3">
+                      {{postModel_object.content| truncatewords:20}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+               
+          {% endfor %}
+         
+          </div>
+        </div>      
+    </div>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'partial/base.html' %}
+{% block title%}Post detail page {% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+  <div class="container">
+    
+      <div class="row mt-5 pt-4">
+        <div class="col-md-8">
+          <div class="card my-5 shadow">
+              <div class="card-body">
+                
+              </div>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="my-3">
+            <span><a class= "btn btn-primary float-middle btn-sm " href="{% url 'edit_post' p_details.id %}">Edit</a></span>
+            <span><a class= "btn btn-danger float-middle btn-sm mx-4" href="">Delete</a></span>
+        </div>
+    </div>
+
+
+{% endblock %}
+
