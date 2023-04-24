@@ -1,0 +1,59 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    items page
+{% endblock %}
+
+
+{% block content %}
+<table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">price</th>
+        <th scope="col">Image</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+        <div class="container mt-5 allign container justify-content-center align-items-center">
+            <div class="alert alert-info ">
+                <center>
+                <h1>Admin Dashboard </h1
+                </center>
+                <br>
+            </div>
+
+
+            <!-- Button trigger modal -->
+    <a href="{% url 'add_products' %}" class="btn btn-primary">
+        Add products
+    </a>
+              
+    </tbody>
+        {% for items in items %}
+
+            <tr>
+                <td scope="col">{{items.pk}}</td>
+                <td scope="col">{{items.name}}</td>
+                <td scope="col">{{items.price}} fcfa</td>
+                <td>
+                    <img alt="image" style="width: 104px; height: 100px;" src="{{items.image.url}}"> 
+                </td>
+                <td scope="col">
+                    <a class="btn btn-outline-info btn-sm" href="{% url 'purchase_items' items.pk %}">Update Product</a>
+                    <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_product' items.pk %}">Delete Product</a>
+{% comment %}  {% endcomment %}
+                    {% comment %} <button type="button" class="btn btn-outline-secondary" {% endcomment %}
+                        {% comment %} data-toggle="modal" data-target="#Modal-MoreInfo"> {% endcomment %}
+                        {% comment %} Purchase Item {% endcomment %}
+                    {% comment %} </button> {% endcomment %}
+                </td>
+            </tr>
+            
+            {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    items page
+{% endblock %}
+
+
+
+{% block content %}
+<table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">price</th>
+        <th scope="col">Image</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for items in items %}
+
+        {% include 'main/includes/items_model.html' %}
+            <tr>
+                <td scope="col">{{items.pk}}</td>
+                <td scope="col">{{items.name}}</td>
+                <td scope="col">{{items.price}} fcfa</td>
+                <td>
+                    <img alt="image" style="width: 104px; height: 100px;" src="{{items.image.url}}"> 
+                </td>
+                <td scope="col">
+
+                    <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModal{{ items.pk }}">
+                        More Info
+                    </button>  ||
+                    <a class="btn btn-outline-danger btn-sm" href="{% url 'purchase_items' items.pk %}">Purchase Product</a>
+{% comment %}  {% endcomment %}
+                    {% comment %} <button type="button" class="btn btn-outline-secondary" {% endcomment %}
+                        {% comment %} data-toggle="modal" data-target="#Modal-MoreInfo"> {% endcomment %}
+                        {% comment %} Purchase Item {% endcomment %}
+                    {% comment %} </button> {% endcomment %}
+                </td>
+            </tr>
+            
+            {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
