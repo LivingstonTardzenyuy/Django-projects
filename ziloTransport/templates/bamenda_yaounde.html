@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>admin-panel</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="{% static 'https://fonts.gstatic.com' %}">
+    <link href="{% static 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css' %}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        input {max-width: 32em};
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="{% static '' %}" class="navbar-brand">
+                    <h1 class="m-0 text-primary"><span class="text-dark">ZI</span>LO</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                                          
+                                                          
+                </div>
+                <div>
+                    {% comment %} <a href="{% url 'adminLogin' %}"> {% endcomment %}
+                        <button style="border-radius: 15px;" class="btn btn-success".>Download</button>
+                    </a>
+
+
+
+                
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+<div class="container">
+    <table class="table table-striped table-bordered table-hover table-dark">
+        <thead>
+           
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">No of sits</th>
+                <th scope="col">Tel</th>
+                <th scope="col">Notes</th>
+            </tr>
+         
+        </thead>
+
+        <tbody>
+            {% for user in reservation %}
+            {% if user.current_location == 'Bamenda' and user.destination == 'Yaounde' %}
+              
+           
+          
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <th scope="row">{{user.name}}</th>
+                <th scope="row">
+                    {{user.count}}
+                </th>
+                <th scope="row">{{user.contact}}</th>
+                <th scope="row">{{user.notes}}</th>
+            </tr>
+           
+            {% endif %}
+            
+        </tbody>
+       
+        {% endfor%}
+    </table>
+
+    
+    <!-- JavaScript Libraries -->
+    <script src="{% static 'https://code.jquery.com/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+{% endblock content %}

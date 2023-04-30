@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ZILO</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="{% static 'https://fonts.gstatic.com' %}">
+    <link href="{% static 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css' %}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        input {max-width: 32em};
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="{% url 'index' %}" class="navbar-brand">
+                    <h1 class="m-0 text-primary"><span class="text-dark">ZI</span>LO</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                     <div class="navbar-nav ml-auto py-0">
+                        <a href="{% static 'index.html' %}" class="nav-item nav-link">Admin Login</a>
+                        <a href="{% static 'about.html' %}" class="nav-item nav-link">Location</a>
+                       
+                
+                </div>
+                <div>
+                    {% comment %} <a href="{% url 'adminLogin' %}"> {% endcomment %}
+                        <button style="border-radius: 15px;" class="btn btn-success".>Pay Ticket</button>
+                    </a>
+
+
+
+                
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <center>
+            <h1> fill the requested information</h1>
+    {% comment %} <h4 style="color:red"> {% endcomment %}
+        {% comment %} Note! Your <b>current location</b> must be different from <b>Desitination location</b> {% endcomment %}
+    {% comment %} </h4>  {% endcomment %}
+    {% for messages in messages %}
+    <h6>{{messages}}</h6>
+    {% endfor %}
+
+<form action="" method="post">
+   
+        <div class="align-items-center justify-content-center">
+            {% csrf_token %}
+            <div class="container mt-4">
+                <div class="col-6"style="width:1000px">
+
+                    {{form|crispy}}
+                </div>
+
+            </div>
+
+            </div>
+
+
+             <input type="submit" value="submit">
+              {% endblock %}
+        
+        </div>
+    </center>
+
+
+    
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-1 px-sm-1 px-lg-1" style="margin-top: 90px;height: 80px; ">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <!-- <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">TRAVEL</span>ER</h1>
+                </a> -->
+                <!-- <p>Sed ipsum clita tempor ipsum ipsum amet sit ipsum lorem amet labore rebum lorem ipsum dolor. No sed vero lorem dolor dolor</p> -->
+                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
+                <div class="d-flex justify-content-start" >
+                    <a style="border-radius: 15px; color: white;" class="btn btn-outline-primary btn-square mr-2" href="{% static '#' %}"><i class="fab fa-twitter"></i></a>
+                    <a style="border-radius: 15px; color: white;" class="btn btn-outline-primary btn-square mr-2" href="{% static '#' %}"><i class="fab fa-facebook-f"></i></a>
+                    <a style="border-radius: 15px; color: white;" class="btn btn-outline-primary btn-square mr-2" href="{% static '#' %}"><i class="fab fa-linkedin-in"></i></a>
+                    <a style="border-radius: 15px; color: white;" class="btn btn-outline-primary btn-square" href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+           
+            <!-- <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contact Us</h5>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
+                <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                <!- <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Newsletter</h6> 
+                <div class="w-100">
+                    
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            
+            <div class="col-lg-6 text-center text-md-right">
+                <p class="m-0 text-white-50">Designed by ZILO</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="{% static '#' %}" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="{% static 'https://code.jquery.com/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
